@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacia Central-Multidrogas</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #FF0000;
+            color: white;
+        }
+        .container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 1.5s ease-in;
+            background: linear-gradient(to bottom, white 200px, #FF0000 200px);
+        }
+        .profile-pic {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-top: 50px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .pharmacy-name {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 30px;
+            text-align: center;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        .cta {
+            font-size: 22px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .link {
+            margin: 20px 0;
+            padding: 15px 30px;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .link:hover {
+            background-color: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+        .link i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-pic">
+            <!-- Substitua o src abaixo pela URL da sua imagem de perfil -->
+            <img src="https://scontent-gru2-1.xx.fbcdn.net/v/t39.30808-6/306078322_453336793479850_2234224752947140179_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFpl9mXYGXNyRP8TqBoQv-wKowFWKjO8KQqjAVYqM7wpLFQZUjaf8jUup2dLp6uza-UbQq3RY3Ygzwy772WLzmc&_nc_ohc=RTVN2UBYmXAQ7kNvgFBNbbl&_nc_ht=scontent-gru2-1.xx&oh=00_AYDq0MBmPNNkPEKWQHzJwr-tAKyhYbmDnh1_tEqjEp0zDw&oe=66878345" alt="Farmacia Central-Multidrogas">
+        </div>
+        <div class="pharmacy-name">Farmacia Central-Multidrogas</div>
+        <div class="cta">Siga nossas redes sociais e entre em contato através do nosso WhatsApp!</div>
+        <div class="links">
+            <a href="#" id="fbLink" class="link"><i class="fab fa-facebook-f"></i> Facebook</a>
+            
+            <a href="instagram://user?username=farmaciacentralmultidrogas" class="link"><i class="fab fa-instagram"></i> Instagram</a>
+            
+            <a href="whatsapp://send?phone=14996727010" class="link"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var fbLink = document.getElementById('fbLink');
+            var igLink = document.querySelector('a[href^="instagram://"]');
+            var waLink = document.querySelector('a[href^="whatsapp://"]');
+
+            fbLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                var fbAppUrl = 'fb://page/753315818054841'; // ID da página no Facebook
+
+                var webUrl = 'https://www.facebook.com/753315818054841';
+
+                // Tentar abrir o app do Facebook
+                window.location.href = fbAppUrl;
+
+                // Se não conseguir abrir o app, redirecionar para a versão web após um curto delay
+                setTimeout(function() {
+                    if (!document.hidden) {
+                        window.location.href = webUrl;
+                    }
+                }, 2000); // Aguarde 2 segundos antes de redirecionar
+            });
+
+            igLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                setTimeout(function() {
+                    window.location.href = 'https://www.instagram.com/invites/contact/?igsh=d33oahvk2g80&utm_content=2uu6dwg';
+                }, 25);
+            });
+
+            waLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                setTimeout(function() {
+                    window.location.href = 'https://wa.me/14996727010';
+                }, 25);
+            });
+        });
+    </script>
+</body>
+</html>
