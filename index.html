@@ -7,15 +7,19 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <style>
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes buttonAnimation {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             font-family: Arial, sans-serif;
-            background-color: #FF0000;
+            background-color: #273689; /* Azul */
             color: white;
         }
         .container {
@@ -23,19 +27,43 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            animation: fadeIn 1.5s ease-in;
-            background: linear-gradient(to bottom, white 200px, #FF0000 200px);
+            position: relative;
         }
-        .profile-pic {
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 35%;
+            background: url('topo.jpg') no-repeat center center;
+            background-size: cover;
+            z-index: 1;
+        }
+        .profile-pic-container {
             width: 250px;
             height: 250px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 2;
+        }
+        .profile-pic {
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             background-color: #ddd;
-            margin-top: 50px;
             box-shadow: 0 0 15px rgba(0,0,0,0.3);
             overflow: hidden;
+            position: relative;
+        }
+        .profile-pic::after {
+            content: '';
+            display: block;
+            padding-bottom: 100%;
         }
         .profile-pic img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -47,56 +75,110 @@
             text-align: center;
             color: white;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            z-index: 2;
         }
         .cta {
             font-size: 22px;
             margin-top: 20px;
             margin-bottom: 40px;
             text-align: center;
+            z-index: 2;
         }
         .links {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
+            z-index: 2;
+        }
+        .link-wrapper {
+            position: relative;
+            margin: 10px 0;
+            margin-left: -120px;
+            width: 150%;
+            max-width: 300px;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: fadeIn 0.5s ease-in forwards;
+        }
+        .link-wrapper:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .link-wrapper:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        .button-background {
+            position: absolute;
+            top: 50%;
+            left: -42%;
+            width: 350%;
+            height: 85px;
+            background-color: white;
+            border-radius: 80px;
+            transform: translate(-50%, -50%);
+            z-index: 1;
         }
         .link {
-            margin: 20px 0;
-            padding: 15px 30px;
-            background-color: rgba(255,255,255,0.2);
+            width: 150%;
             border-radius: 50px;
             text-decoration: none;
-            color: white;
-            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            animation: buttonAnimation 2s ease-in-out infinite alternate;
+        }
+        .link img {
             width: 80%;
-            max-width: 300px;
-            text-align: center;
+            height: auto;
             transition: all 0.3s ease;
         }
-        .link:hover {
-            background-color: rgba(255,255,255,0.3);
+        .link:hover img {
             transform: scale(1.05);
         }
-        .link i {
-            margin-right: 10px;
+		.logo-container {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="profile-pic">
-            <!-- Substitua o src abaixo pela URL da sua imagem de perfil -->
-            <img src="https://scontent-gru2-1.xx.fbcdn.net/v/t39.30808-6/306078322_453336793479850_2234224752947140179_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFpl9mXYGXNyRP8TqBoQv-wKowFWKjO8KQqjAVYqM7wpLFQZUjaf8jUup2dLp6uza-UbQq3RY3Ygzwy772WLzmc&_nc_ohc=RTVN2UBYmXAQ7kNvgFBNbbl&_nc_ht=scontent-gru2-1.xx&oh=00_AYDq0MBmPNNkPEKWQHzJwr-tAKyhYbmDnh1_tEqjEp0zDw&oe=66878345" alt="Farmacia Central-Multidrogas">
+        <div class="profile-pic-container">
+            <div class="profile-pic">
+                <img src="https://scontent-gru2-1.xx.fbcdn.net/v/t39.30808-6/306078322_453336793479850_2234224752947140179_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFpl9mXYGXNyRP8TqBoQv-wKowFWKjO8KQqjAVYqM7wpLFQZUjaf8jUup2dLp6uza-UbQq3RY3Ygzwy772WLzmc&_nc_ohc=RTVN2UBYmXAQ7kNvgFBNbbl&_nc_ht=scontent-gru2-1.xx&oh=00_AYDq0MBmPNNkPEKWQHzJwr-tAKyhYbmDnh1_tEqjEp0zDw&oe=66878345" alt="Farmacia Central-Multidrogas">
+            </div>
         </div>
-        <div class="pharmacy-name">Farmacia Central-Multidrogas</div>
+        <div class="pharmacy-name">Farmácia Central-Multidrogas</div>
+		<div class="logo-container">
+    <img src="logo.png" alt="Logo" class="logo">
+</div>
         <div class="cta">Siga nossas redes sociais e entre em contato através do nosso WhatsApp!</div>
         <div class="links">
-            <a href="#" id="fbLink" class="link"><i class="fab fa-facebook-f"></i> Facebook</a>
-            
-            <a href="instagram://user?username=farmaciacentralmultidrogas" class="link"><i class="fab fa-instagram"></i> Instagram</a>
-            
-            <a href="whatsapp://send?phone=14996727010" class="link"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        </div>
+    <div class="link-wrapper">
+        <div class="button-background"></div>
+        <a href="whatsapp://send?phone=14996727010" class="link"><img src="BotaoWhatsapp.png" alt="WhatsApp"></a>
+    </div>
+    <div class="link-wrapper">
+        <div class="button-background"></div>
+        <a href="instagram://user?username=farmaciacentralmultidrogas" class="link"><img src="botaoinstagram.png" alt="Instagram"></a>
+    </div>
+    <div class="link-wrapper">
+        <div class="button-background"></div>
+        <a href="#" id="fbLink" class="link"><img src="botaofacebook.png" alt="Facebook"></a>
+    </div>
+</div>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -107,7 +189,6 @@
             fbLink.addEventListener('click', function(e) {
                 e.preventDefault();
                 var fbAppUrl = 'fb://page/753315818054841'; // ID da página no Facebook
-
                 var webUrl = 'https://www.facebook.com/753315818054841';
 
                 // Tentar abrir o app do Facebook
